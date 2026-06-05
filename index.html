@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Buddies Car Cleaners | Paarl</title>
+<style>
+  :root { --blue:#1e90ff; --yellow:#ffcc00; --dark:#0a0a0a; --card:#111; }
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background:var(--dark); color:#fff; overflow-x:hidden; }
+  
+  /* Animations */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
+  @keyframes glow { 0%,100% { box-shadow:0 0 20px #1e90ff44; } 50% { box-shadow:0 0 40px #1e90ffaa; } }
+  
+  .hero { padding:100px 20px; text-align:center; background:radial-gradient(circle at top, #1e90ff22, transparent 70%); animation:fadeUp 1s ease; }
+  .location { color:var(--yellow); font-weight:bold; font-size:0.9rem; letter-spacing:3px; animation:fadeUp 1s ease 0.2s both; }
+  .hero h1 { font-size:4.5rem; margin:20px 0; line-height:1.1; animation:float 4s ease-in-out infinite; }
+  .hero h1 span { color:var(--blue); text-shadow:0 0 30px #1e90ffcc; }
+  .hero h2 { font-size:1.6rem; font-style:italic; margin-bottom:25px; animation:fadeUp 1s ease 0.4s both; }
+  .tagline { background:var(--blue); color:#000; padding:14px 30px; border-radius:50px; font-weight:bold; display:inline-block; animation:glow 2s ease-in-out infinite; }
+
+  .pricing { max-width:1100px; margin:80px auto; padding:0 20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
+  .card { 
+    background:var(--card); border:2px solid #222; border-radius:20px; padding:35px; 
+    animation:fadeUp 0.8s ease both; transition:0.4s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .card:nth-child(1) { animation-delay:0.2s }
+  .card:nth-child(2) { animation-delay:0.4s }
+  .card:nth-child(3) { animation-delay:0.6s }
+  .card:hover { 
+    border-color:var(--blue); transform:translateY(-12px) scale(1.02); 
+    box-shadow:0 20px 40px #1e90ff33; 
+  }
+  .card.gold { border-color:var(--yellow); }
+  .card.gold:hover { box-shadow:0 20px 40px #ffcc0033; border-color:var(--yellow); }
+  
+  .card h3 { color:var(--yellow); font-size:1.3rem; margin-bottom:12px; }
+  .price { font-size:3.2rem; color:var(--blue); font-weight:bold; margin:18px 0; transition:0.3s; }
+  .card:hover .price { transform:scale(1.1); text-shadow:0 0 20px #1e90ff99; }
+  .card ul { list-style:none; margin-top:25px; text-align:left; }
+  .card ul li { padding:10px 0; border-bottom:1px solid #222; opacity:0; animation:fadeUp 0.5s ease forwards; }
+  .card:hover ul li { animation:fadeUp 0.4s ease forwards; }
+  .card ul li:nth-child(1){animation-delay:0.1s} .card ul li:nth-child(2){animation-delay:0.2s}
+  .card ul li:nth-child(3){animation-delay:0.3s} .card ul li:nth-child(4){animation-delay:0.4s}
+  .card ul li:nth-child(5){animation-delay:0.5s} .card ul li:nth-child(6){animation-delay:0.6s}
+  .card ul li:nth-child(7){animation-delay:0.7s}
+  .card ul li:before { content:"✓ "; color:var(--blue); font-weight:bold; margin-right:10px; transition:0.3s; }
+  .card:hover ul li:before { transform:scale(1.3); display:inline-block; }
+  
+  .badge { background:var(--yellow); color:#000; padding:8px 16px; border-radius:25px; font-size:0.85rem; font-weight:bold; display:inline-block; margin-top:20px; transition:0.3s; }
+  .card:hover .badge { transform:rotate(-2deg) scale(1.05); }
+
+  .features { display:flex; flex-wrap:wrap; justify-content:center; gap:40px; padding:80px 20px; background:#050505; }
+  .feature { text-align:center; animation:fadeUp 1s ease both; }
+  .feature:nth-child(1){animation-delay:0.1s} .feature:nth-child(2){animation-delay:0.2s}
+  .feature:nth-child(3){animation-delay:0.3s} .feature:nth-child(4){animation-delay:0.4s}
+  .feature:nth-child(5){animation-delay:0.5s}
+  .feature-icon { font-size:3rem; margin-bottom:12px; display:inline-block; transition:0.4s; }
+  .feature:hover .feature-icon { transform:rotate(360deg) scale(1.2); }
+
+  .contact { text-align:center; padding:90px 20px; animation:fadeUp 1s ease 0.3s both; }
+  .contact h2 { font-size:2.3rem; margin-bottom:12px; }
+  .contact p { color:#aaa; margin-bottom:30px; }
+  .btn { 
+    display:inline-block; background:#25D366; color:#fff; padding:18px 35px; border-radius:50px; 
+    text-decoration:none; font-weight:bold; margin:12px; transition:0.3s; position:relative; overflow:hidden;
+  }
+  .btn:before { 
+    content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; 
+    background:linear-gradient(90deg, transparent, #ffffff44, transparent); transition:0.5s;
+  }
+  .btn:hover:before { left:100%; }
+  .btn:hover { transform:scale(1.08) translateY(-3px); box-shadow:0 10px 25px #25D36666; }
+
+  .footer { background:#000; text-align:center; padding:30px; color:var(--blue); font-weight:bold; border-top:1px solid #222; animation:fadeUp 1s ease 0.8s both; }
+
+  @media(max-width:700px){ .hero h1{font-size:2.8rem} .price{font-size:2.4rem} }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="location">📍 LIVE IN PAARL</div>
+  <h1>CAR <span>BUDDIES</span></h1>
+  <h2>CAR CLEANERS</h2>
+  <div class="tagline">WE DON'T JUST WASH, WE CARE!</div>
+  <p style="margin-top:30px; color:#aaa;">Clean Car, Happy Ride!</p>
+</section>
+
+<section class="pricing">
+  <div class="card gold">
+    <h3>GORGEOUS DETAILED WASH</h3>
+    <div class="price">R300</div>
+    <ul>
+      <li>Full exterior wash</li>
+      <li>Wheels & tyres cleaned</li>
+      <li>Interior vacuum</li>
+      <li>Dashboard & panels cleaned</li>
+      <li>Windows cleaned</li>
+      <li>Finishing touches</li>
+      <li>Premium shine & protection</li>
+    </ul>
+    <div class="badge">TOP TO BOTTOM PERFECTION!</div>
+  </div>
+
+  <div class="card">
+    <h3>NORMAL WASH</h3>
+    <div class="price">R150</div>
+    <ul>
+      <li>Exterior wash</li>
+      <li>Wheels & tyres cleaned</li>
+      <li>Windows cleaned</li>
+      <li>Basic dry & shine</li>
+    </ul>
+    <div class="badge" style="background:var(--blue); color:#fff;">CLEAN, FRESH & AFFORDABLE!</div>
+  </div>
+
+  <div class="card">
+    <h3>🏍️ MOTORCYCLE WASH</h3>
+    <div class="price">R50</div>
+    <ul>
+      <li>Full exterior wash</li>
+      <li>Wheels & chain cleaned</li>
+      <li>Basic dry & shine</li>
+    </ul>
+    <div class="badge" style="background:var(--blue); color:#fff;">BIKES TREATED LIKE BUDDIES TOO!</div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature"><div class="feature-icon">⏱️</div>FAST SERVICE</div>
+  <div class="feature"><div class="feature-icon">👥</div>FRIENDLY TEAM</div>
+  <div class="feature"><div class="feature-icon">⭐</div>QUALITY CLEANING</div>
+  <div class="feature"><div class="feature-icon">✅</div>SATISFACTION GUARANTEED</div>
+  <div class="feature"><div class="feature-icon">💰</div>AFFORDABLE PRICES</div>
+</section>
+
+<section class="contact">
+  <h2>Contact Us Today!</h2>
+  <p>WHATSAPP / CALL</p>
+  <a class="btn" href="https://wa.me/27793280822">DRICKUS: 079 328 0822</a>
+  <a class="btn" href="https://wa.me/27723285656">GEORGE: 072 328 5656</a>
+</section>
+
+<footer class="footer">
+  CAR BUDDIES CAR CLEANERS - YOUR CAR'S BEST FRIEND! ❤️
+</footer>
+
+</body>
+</html>
